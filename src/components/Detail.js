@@ -7,10 +7,10 @@ import { API_KEY, imageUrl } from "../constants/constants";
 function Detail() {
     const { id } = useParams();
 
-    const [filteredMovieById, setFilteredMovieById] = useState();
+    const [filteredMovieById, setFilteredMovieById] = useState(null);
     const [movieTitle, setMovieTitle] = useState();
-    const [movieDiscription, setMovieDiscription] = useState();
-    console.log(movieDiscription);
+    const [movieDiscription, setMovieDiscription] = useState(null);
+    // console.log(movieDiscription);
 
     useEffect(() => {
         axios
@@ -19,12 +19,12 @@ function Detail() {
             )
             .then((response) => {
                 const data = response.data.results;
-                console.log(data);
-                let daa = data.filter((x) => x.id == id).map((x) => imageUrl + x.backdrop_path);
+                // console.log(data);
+                let daa = data.filter((x) => x.id === Number(id)).map((x) => imageUrl + x.backdrop_path);
                 setFilteredMovieById(daa);
-                let title = data.filter((x) => x.id == id).map((x) => x.title);
+                let title = data.filter((x) => x.id === Number(id)).map((x) => x.title);
                 setMovieTitle(title);
-                let description = data.filter((x) => x.id == id).map((x) => x.overview);
+                let description = data.filter((x) => x.id === Number(id)).map((x) => x.overview);
                 setMovieDiscription(description);
             });
     }, []);
@@ -34,7 +34,7 @@ function Detail() {
             {filteredMovieById && (
                 <>
                     <Background>
-                        <img src={filteredMovieById} alt="" />
+                        <img src={filteredMovieById} alt="filterdImg" />
                     </Background>
                     <h1>{movieTitle}</h1>
                     <Controls>
@@ -85,23 +85,14 @@ const Background = styled.div`
     }
 `;
 
-// const ImgTitle = styled.div`
-//     height: 30vh;
-//     min-height: 170px;
-//     width: 35vw;
-//     min-width: 200px;
-//     margin-top: 60px;
-//     img {
-//         width: 100%;
-//         height: 100%;
-//         object-fit: contain;
-//     }
-// `;
-
 const Controls = styled.div`
     display: flex;
     align-items: center;
     margin-top: 60px;
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
 `;
 
 const PlayButton = styled.button`

@@ -1,15 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { selectMovies } from "../features/movie/movieSlice";
 import { useSelector } from "react-redux";
 import { imageUrl } from "../constants/constants";
 
 function Movies() {
     const movies = useSelector(selectMovies);
-
-    
-
 
     return (
         <Container>
@@ -18,10 +15,9 @@ function Movies() {
                 {movies &&
                     movies.map((movie) => (
                         <Wrap key={movie.id}>
-                          <Link to={`/detail/${movie.id}`}>
-                          <img src={imageUrl + movie.backdrop_path} />
-                          </Link>
-                           
+                            <Link to={`/detail/${movie.id}`}>
+                                <img src={imageUrl + movie.backdrop_path} alt="moviethumbnail" />
+                            </Link>
                         </Wrap>
                     ))}
             </Content>
@@ -39,6 +35,10 @@ const Content = styled.div`
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-gap: 25px;
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+        grid-gap: 15px;
+    }
 `;
 
 const Wrap = styled.div`

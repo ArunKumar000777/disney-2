@@ -23,8 +23,9 @@ export default Login
 const Container = styled.div`
     position: relative;
     height: calc(100vh - 70px);
+    width: 100%;
     display: flex;
-    align-items: top;
+    align-items: center;
     justify-content: center;
 
     &::before {
@@ -46,12 +47,13 @@ const Container = styled.div`
 
 const CTA = styled.div`
     max-width: 650px;
-    padding: 80px 40px;
+    padding: 65px 40px;
     width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 80px;
+    justify-content: center;
+    /* margin-top: 80px; */
 
 `
 
@@ -64,7 +66,7 @@ const SignUp = styled.a`
     width: 100%;
     font-weight: bold;
     text-align: center;
-    padding: 17px 0;
+    padding: 13px 0;
     color: #f9f9f9;
     border-radius: 4px;
     cursor: pointer;
